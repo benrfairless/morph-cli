@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 # Commandline client for controlling morph and running scrapers and things
 
 require "thor"

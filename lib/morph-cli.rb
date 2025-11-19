@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "morph-cli/version"
 require 'yaml'
 require 'find'
@@ -81,8 +83,8 @@ module MorphCLI
   }
 
   def self.load_config
-    if File.exists?(config_path)
-      YAML.load(File.read(config_path))
+    if File.exist?(config_path)
+      YAML.safe_load(File.read(config_path), permitted_classes: [Symbol], aliases: true)
     else
       DEFAULT_CONFIG
     end
@@ -139,6 +141,6 @@ module MorphCLI
   # Relative path of database file (if it exists)
   def self.database_path(directory)
     path = "data.sqlite"
-    path if File.exists?(File.join(directory, path))
+    path if File.exist?(File.join(directory, path))
   end
 end
